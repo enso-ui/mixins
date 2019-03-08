@@ -1,0 +1,36 @@
+{
+  "name": "@enso-ui/mixins",
+  "version": "1.0.0",
+  "description": "Enso mixins",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enso-ui/mixins.git"
+  },
+  "keywords": [
+    "mixins",
+    "vue"
+  ],
+  "author": "Adrian Ocneanu <aocneanu@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enso-ui/mixins/issues"
+  },
+  "homepage": "https://github.com/enso-ui/mixins#readme",
+  "devDependencies": {
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.1.6",
+    "eslint": "^5.0.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "laravel-mix": "3.0.0",
+    "node-sass": "^4.11.0",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "vue": "^2.5.16"
+  }
+}
