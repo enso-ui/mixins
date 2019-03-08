@@ -1,33 +1,39 @@
-export default (error) => {
-    if (Object.prototype.hasOwnProperty.call(this, 'loading')) {
-        this.loading = false;
-    }
+export default {
+    inject: ['i18n'],
+    
+    methods: {
+        errorHandler(error) {
+            if (Object.prototype.hasOwnProperty.call(this, 'loading')) {
+                this.loading = false;
+            }
 
-    const { status, data } = error.response;
+            const { status, data } = error.response;
 
-    if ([401, 419].includes(status) && this.$store.state.auth.isAuth) {
-        this.$store.commit('setLastRoute', this.$route);
-        this.$store.commit('appState', false);
-        this.$store.commit('auth/logout');
-        this.$router.push({ name: 'login' });
-        return;
-    }
+            if ([401, 419].includes(status) && this.$store.state.auth.isAuth) {
+                this.$store.commit('setLastRoute', this.$route);
+                this.$store.commit('appState', false);
+                this.$store.commit('auth/logout');
+                this.$router.push({ name: 'login' });
+                return;
+            }
 
-    if ([403, 409, 429, 555].includes(status)) {
-        this.$toastr.error(data.message);
-        return;
-    }
+            if ([403, 409, 429, 555].includes(status)) {
+                this.$toastr.error(data.message);
+                return;
+            }
 
-    if (status === 404) {
-        this.$router.push({ name: 'notFound' });
-        return;
-    }
+            if (status === 404) {
+                this.$router.push({ name: 'notFound' });
+                return;
+            }
 
-    if (status === 503) {
-        window.location.reload();
-    }
+            if (status === 503) {
+                window.location.reload();
+            }
 
-    this.$toastr.error(this.__('Something went wrong...'));
+            this.$toastr.error(this.i18n('Something went wrong...'));
 
-    throw error;
+            throw error;
+        },
+    },
 };
