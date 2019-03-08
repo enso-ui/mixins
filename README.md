@@ -35,7 +35,6 @@ import { canAccess } from '@enso-ui/mixins';
 - `canAccess`, 
 - `errorHandler`, 
 - `i18n`, 
-- `selectOnFocus`,
 
 ## Contributions
 
