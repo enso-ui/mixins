@@ -20,15 +20,27 @@ Check the full documentation at  [docs.laravel-enso.com](https://docs.laravel-en
 
 ### Installation
 
+Install the package:
+```
+yarn add @enso-ui/mixins
+```
+Import the desired component(s):
+```js
+import { canAccess } from '@enso-ui/mixins';
+```
 
 ### Exports
 
 `@enso-ui/mixins`:
-
+- `canAccess`, 
+- `errorHandler`, 
+- `i18n`, 
+- `selectOnFocus`,
 
 ## Contributions
 
-are welcome. Pull requests are great, but issues are good too.
+are welcome. Pull requests are great, 
+but issues are good too.
 
 Thank you to all the people who already contributed to Enso!
 
