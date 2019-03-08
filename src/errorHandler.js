@@ -1,6 +1,4 @@
 export default {
-    inject: ['i18n'],
-    
     methods: {
         errorHandler(error) {
             if (Object.prototype.hasOwnProperty.call(this, 'loading')) {
@@ -31,7 +29,11 @@ export default {
                 window.location.reload();
             }
 
-            this.$toastr.error(this.i18n('Something went wrong...'));
+            const message = Object.keys(this.$options.methods).includes('i18n')
+                ? this.i18n('Something went wrong...')
+                : 'Something went wrong...';
+
+            this.$toastr.error(message);
 
             throw error;
         },
