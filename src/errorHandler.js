@@ -16,7 +16,7 @@ export default {
             }
 
             if ([403, 409, 429, 555].includes(status)) {
-                this.$toastr.error(data.message);
+                this.$toastr.error(this.i18n(data.message));
                 return;
             }
 
