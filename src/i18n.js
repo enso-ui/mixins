@@ -1,4 +1,4 @@
-import translator from '@core-modules/plugins/i18n';
+import translator from '@enso-ui/ui/src/modules/plugins/i18n';
 
 export default {
     methods: {
