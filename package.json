@@ -22,7 +22,7 @@
   "homepage": "https://github.com/enso-ui/mixins#readme",
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@enso-ui/ui": "2.2.x",
+    "@enso-ui/ui": "2.3.x",
     "@fortawesome/fontawesome-free": "^5.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-brands-svg-icons": "^5.2.0",
