@@ -34,7 +34,7 @@
     "eslint-plugin-vue": "^6.0.0"
   },
   "dependencies": {
-    "@enso-ui/ui": "2.4.x",
+    "@enso-ui/ui": "2.5.x",
     "@fortawesome/fontawesome-free": "^5.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
     "@fortawesome/free-brands-svg-icons": "^5.2.0",
