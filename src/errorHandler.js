@@ -1,39 +1,47 @@
+const sessionExpired = (vm, status) => [401, 419].includes(status) && vm.$store.state.auth.isAuth;
+
+const redirectToLogin = (vm) => {
+    vm.$store.commit('setLastRoute', vm.$route);
+    vm.$store.commit('appState', false);
+    vm.$store.commit('auth/logout');
+    vm.$router.push({ name: 'login' });
+};
+
+const shouldDisplayToastr = status => [403, 409, 429, 555].includes(status);
+
+const pageNotFound = status => status === 404;
+
+const maintenanceMode = status => status === 503;
+
 export default {
     methods: {
         errorHandler(error) {
-            if (Object.prototype.hasOwnProperty.call(this, 'loading')) {
-                this.loading = false;
+            if (!error.response) {
+                throw error;
             }
 
             const { status, data } = error.response;
 
-            if ([401, 419].includes(status) && this.$store.state.auth.isAuth) {
-                this.$store.commit('setLastRoute', this.$route);
-                this.$store.commit('appState', false);
-                this.$store.commit('auth/logout');
-                this.$router.push({ name: 'login' });
+            if (sessionExpired(this, status)) {
+                redirectToLogin(this);
                 return;
             }
 
-            if ([403, 409, 429, 555].includes(status)) {
+            if (shouldDisplayToastr(status)) {
                 this.$toastr.error(data.message);
                 return;
             }
 
-            if (status === 404) {
+            if (pageNotFound(status)) {
                 this.$router.push({ name: 'notFound' });
                 return;
             }
 
-            if (status === 503) {
+            if (maintenanceMode(status)) {
                 window.location.reload();
             }
 
-            const message = Object.keys(this.$options.methods).includes('i18n')
-                ? this.i18n('Something went wrong...')
-                : 'Something went wrong...';
-
-            this.$toastr.error(message);
+            this.$toastr.error(this.i18n('Something went wrong...'));
 
             throw error;
         },
