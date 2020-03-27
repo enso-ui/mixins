@@ -27,7 +27,7 @@ const getUserFeedback = vm => axios.get('api/sentry').then(({ data }) => {
 const sessionExpired = (vm, status) => [401, 419].includes(status) && vm.$store.state.auth.isAuth;
 
 const redirectToLogin = (vm) => {
-    vm.$store.commit('setLastRoute', vm.$route);
+    vm.$store.commit('auth/setIntendedRoute', vm.$route);
     vm.$store.commit('appState', false);
     vm.$store.commit('auth/logout');
     vm.$router.push({ name: 'login' });
