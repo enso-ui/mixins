@@ -1,6 +1,8 @@
 const SI = ['', 'k', 'M', 'G', 'T', 'P', 'E'];
 
 const shortNumber = (number, precision = 2) => {
+    number = Number.parseFloat(number);
+
     if (number < 1) {
         return number;
     }
