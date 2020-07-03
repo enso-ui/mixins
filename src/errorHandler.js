@@ -1,6 +1,6 @@
 import { showReportDialog } from '@sentry/browser';
 
-const toastError = vm => vm.$toastr.error(vm.i18n('Something went wrong...'));
+const toastError = vm => vm.toastr.error(vm.i18n('Something went wrong...'));
 
 const dialog = (vm, eventId) => ({
     eventId,
@@ -26,7 +26,7 @@ const getUserFeedback = vm => axios.get('api/sentry').then(({ data }) => {
 
 const sessionExpired = (vm, status) => [401, 419].includes(status) && vm.$store.state.auth.isAuth;
 
-const redirectToLogin = (vm) => {
+const redirectToLogin = vm => {
     vm.$store.commit('auth/setIntendedRoute', vm.$route);
     vm.$store.commit('appState', false);
     vm.$store.commit('auth/logout');
@@ -54,7 +54,7 @@ export default {
             }
 
             if (shouldDisplayToastr(status)) {
-                this.$toastr.warning(this.i18n(data.message));
+                this.toastr.warning(this.i18n(data.message));
                 return;
             }
 
