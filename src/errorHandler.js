@@ -33,7 +33,7 @@ const redirectToLogin = vm => {
     vm.$router.push({ name: 'login' });
 };
 
-const shouldDisplayToastr = status => [403, 409, 429, 555].includes(status);
+const shouldDisplayToastr = status => [403, 409, 429, 488].includes(status);
 
 const pageNotFound = status => status === 404;
 
