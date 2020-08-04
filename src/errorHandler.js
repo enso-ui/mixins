@@ -42,6 +42,10 @@ const maintenanceMode = status => status === 503;
 export default {
     methods: {
         errorHandler(error) {
+            if (axios.isCancel(error)) {
+                return;
+            }
+
             if (!error.response) {
                 throw error;
             }
