@@ -1,7 +1,5 @@
 import { showReportDialog } from '@sentry/browser';
 
-const toastError = vm => vm.toastr.error(vm.i18n('Something went wrong...'));
-
 const dialog = (vm, eventId) => ({
     eventId,
     title: vm.i18n('It looks like we’re having issues.'),
@@ -16,15 +14,12 @@ const dialog = (vm, eventId) => ({
     errorFormEntry: vm.i18n('Some fields were invalid. Please correct the errors and try again.'),
 });
 
-const getUserFeedback = vm => axios.get('api/sentry').then(({ data }) => {
-    if (data.eventId) {
-        showReportDialog(dialog(vm, data.eventId));
-    } else {
-        toastError(vm);
-    }
-});
+const toastError = vm => vm.toastr.error(vm.i18n('Something went wrong...'));
 
-const sessionExpired = (vm, status) => [401, 419].includes(status) && vm.$store.state.auth.isAuth;
+const getUserFeedback = vm => axios.get('api/sentry')
+    .then(({ data }) => (data.eventId
+        ? showReportDialog(dialog(vm, data.eventId))
+        : toastError(vm)));
 
 const redirectToLogin = vm => {
     vm.$store.commit('auth/setIntendedRoute', vm.$route);
@@ -33,11 +28,9 @@ const redirectToLogin = vm => {
     vm.$router.push({ name: 'login' });
 };
 
-const shouldDisplayToastr = status => [403, 409, 429, 488].includes(status);
-
-const pageNotFound = status => status === 404;
-
-const maintenanceMode = status => status === 503;
+const report = vm => (vm.$store.state.meta.env === 'production'
+    ? getUserFeedback(vm)
+    : toastError(vm));
 
 export default {
     methods: {
@@ -52,30 +45,25 @@ export default {
 
             const { status, data } = error.response;
 
-            if (sessionExpired(this, status)) {
+            switch (status) {
+            case 401: case 419:
                 redirectToLogin(this);
-                return;
-            }
-
-            if (shouldDisplayToastr(status)) {
+                break;
+            case 409: case 429: case 488:
                 this.toastr.warning(this.i18n(data.message));
-                return;
-            }
-
-            if (pageNotFound(status)) {
+                break;
+            case 403:
+                this.$router.push({ name: 'unauthorized' });
+                break;
+            case 404:
                 this.$router.push({ name: 'notFound' });
-                return;
-            }
-
-            if (maintenanceMode(status)) { // TODO add front-end maintenance mode page
-                window.location.reload();
-                return;
-            }
-
-            if (this.$store.state.meta.env === 'production') {
-                getUserFeedback(this);
-            } else {
-                toastError(this);
+                break;
+            case 503:
+                this.$router.push({ name: 'maintenanceMode' });
+                break;
+            default:
+                report(this);
+                break;
             }
         },
     },
