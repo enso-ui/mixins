@@ -1,4 +1,13 @@
 import { showReportDialog } from '@sentry/browser';
+import Router from 'vue-router';
+
+const { isNavigationFailure } = Router;
+
+const routerErrorHandler = error => {
+    if (!isNavigationFailure(error)) {
+        throw error;
+    }
+};
 
 const dialog = (vm, eventId) => ({
     eventId,
@@ -53,13 +62,16 @@ export default {
                 this.toastr.warning(this.i18n(data.message));
                 break;
             case 403:
-                this.$router.push({ name: 'unauthorized' });
+                this.$router.push({ name: 'unauthorized' })
+                    .catch(routerErrorHandler);
                 break;
             case 404:
-                this.$router.push({ name: 'notFound' });
+                this.$router.push({ name: 'notFound' })
+                    .catch(routerErrorHandler);
                 break;
             case 503:
-                this.$router.push({ name: 'maintenanceMode' });
+                this.$router.push({ name: 'maintenanceMode' })
+                    .catch(routerErrorHandler);
                 break;
             default:
                 report(this);
