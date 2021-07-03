@@ -1,6 +1,6 @@
 const SI = ['', 'k', 'M', 'G', 'T', 'P', 'E'];
 
-const shortNumber = (number, precision = 2) => {
+export default (number, precision = 2) => {
     number = Number.parseFloat(number);
 
     if (number < 1) {
@@ -20,5 +20,3 @@ const shortNumber = (number, precision = 2) => {
 
     return formatted;
 };
-
-export default shortNumber;

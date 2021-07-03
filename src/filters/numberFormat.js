@@ -1,9 +1,9 @@
-import Vue from 'vue';
+import store from '../../../ui/src/core/services/store';
 
-Vue.filter('numberFormat', (value, decimals = 3) => new Intl.NumberFormat(
-    this.$store.state.preferences.global.lang, {
+export default (value, decimals = 3) => new Intl.NumberFormat(
+    store.state.preferences.global.lang, {
         style: 'decimal',
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
     },
-).format(value));
+).format(value);
