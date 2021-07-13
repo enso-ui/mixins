@@ -34,7 +34,8 @@ const redirectToLogin = vm => {
     vm.$store.commit('auth/setIntendedRoute', vm.$route);
     vm.$store.commit('appState', false);
     vm.$store.commit('auth/logout');
-    vm.$router.push({ name: 'login' });
+    vm.$router.push({ name: 'login' })
+        .catch(routerErrorHandler);
 };
 
 const report = vm => (vm.$store.state.meta.env === 'production'
