@@ -70,6 +70,9 @@ export default {
                 this.$router.push({ name: 'notFound' })
                     .catch(routerErrorHandler);
                 break;
+            case 413:
+                this.toastr.warning(this.i18n('Request Entity Too Large'));
+                break;
             case 503:
                 this.$router.push({ name: 'maintenanceMode' })
                     .catch(routerErrorHandler);
