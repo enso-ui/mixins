@@ -31,7 +31,9 @@ const getUserFeedback = vm => axios.get('api/sentry')
         : toastError(vm)));
 
 const redirectToLogin = vm => {
-    vm.$store.commit('auth/setIntendedRoute', vm.$route);
+    if (vm.$route.name !== 'login') {
+        vm.$store.commit('auth/setIntendedRoute', vm.$route);
+    }
     vm.$store.commit('appState', false);
     vm.$store.commit('auth/logout');
     vm.$router.push({ name: 'login' })
