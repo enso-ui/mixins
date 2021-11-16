@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/mixins",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Enso mixins",
   "main": "index.js",
   "scripts": {
