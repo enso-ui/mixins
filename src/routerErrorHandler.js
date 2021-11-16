@@ -1,6 +1,4 @@
-import Router from 'vue-router';
-
-const { isNavigationFailure } = Router;
+import { isNavigationFailure } from 'vue-router';
 
 export default {
     methods: {
