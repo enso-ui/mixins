@@ -13,11 +13,11 @@ library.add(faFile, faImage, faFileExcel, faFilePdf, faFileWord, faFilePowerpoin
 
 class EnsoFile {
     constructor(filename) {
-        this.extension = filename.split('.').pop().toLowerCase();
+        this.fileExtension = filename.split('.').pop().toLowerCase();
     }
 
     extension() {
-        return this.extension;
+        return this.fileExtension;
     }
 
     isImage() {
