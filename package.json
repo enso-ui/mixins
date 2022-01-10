@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/enso-ui/mixins#readme",
   "dependencies": {
+    "@enso-ui/ui": "^5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.2",
-    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@sentry/browser": "^6.9.0",
     "vue": "^3.0",
     "vue-router": "^4.0"
