@@ -12,12 +12,12 @@ const Pdfs = ['pdf'];
 library.add(faFile, faImage, faFileExcel, faFilePdf, faFileWord, faFilePowerpoint);
 
 class EnsoFile {
-    constructor(filename) {
-        this.fileExtension = filename.split('.').pop().toLowerCase();
+    constructor(file) {
+        this._extension = file.extension.toLowerCase();
     }
 
     extension() {
-        return this.fileExtension;
+        return this._extension;
     }
 
     isImage() {
