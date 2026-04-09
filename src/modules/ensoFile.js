@@ -1,4 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faFile, faImage, faFileExcel, faFilePdf, faFileWord, faFilePowerpoint,
 } from '@fortawesome/free-solid-svg-icons';
@@ -8,8 +7,6 @@ const SpreadSheets = ['xls', 'xlsx', 'csv', 'numbers'];
 const Documents = ['doc', 'docx', 'pages'];
 const Ppts = ['ppt', 'pptx', 'key'];
 const Pdfs = ['pdf'];
-
-library.add(faFile, faImage, faFileExcel, faFilePdf, faFileWord, faFilePowerpoint);
 
 class EnsoFile {
     constructor(file) {

@@ -1,7 +1,7 @@
-import store from '@enso-ui/ui/src/core/services/store';
+import { getActivePinia } from 'pinia';
 
 export default (value, decimals = 3) => new Intl.NumberFormat(
-    store.state.preferences.global.lang, {
+    getActivePinia()?._s.get('preferences')?.global?.lang ?? 'en', {
         style: 'decimal',
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
