@@ -19,9 +19,16 @@
   "homepage": "https://github.com/enso-ui/mixins#readme",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
-    "@sentry/browser": "^6.9.0",
-    "pinia": "^3.0.0",
-    "vue": "^3.0",
-    "vue-router": "^4.0"
+    "@sentry/browser": "^6.9.0"
+  },
+  "peerDependencies": {
+    "pinia": "^3.0.3",
+    "vue": "^3.5.0",
+    "vue-router": "^4.6.0"
+  },
+  "devDependencies": {
+    "pinia": "^3.0.3",
+    "vue": "^3.5.0",
+    "vue-router": "^4.6.0"
   }
 }
