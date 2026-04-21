@@ -1,7 +1,7 @@
 {
   "name": "@enso-ui/mixins",
   "version": "5.1.2",
-  "description": "Enso mixins",
+  "description": "Shared file and number formatting helpers for Enso UI",
   "main": "index.js",
   "repository": {
     "type": "git",
